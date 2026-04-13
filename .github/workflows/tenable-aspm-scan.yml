@@ -13,8 +13,7 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Run Tenable Cloud Security Enterprise Scan
-        # This is the correct, verified repository path for the enterprise action
-        uses: tenable/cloud-security-actions/iac-scan@v1 
+        uses: tenable/cloud-security-actions/iac@v1 
         with:
           apiToken: ${{ secrets.TENABLE_API_TOKEN }}
           apiUrl: ${{ secrets.TENABLE_API_URL }}
