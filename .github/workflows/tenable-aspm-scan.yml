@@ -1,0 +1,21 @@
+name: Tenable Cloud Security ASPM Scan
+on:
+  push:
+    branches: [ "main","master" ]
+  pull_request:
+    branches: [ "main","master" ]
+
+jobs:
+  tenable-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Run Tenable Cloud Security IaC/Code Scan
+        uses: tenable/tenable-cloud-security-action@v1 # Checks the GitHub marketplace action
+        with:
+          apiToken: ${{ secrets.TENABLE_API_TOKEN }}
+          apiUrl: ${{ secrets.TENABLE_API_URL }}
+          failOnMinSeverity: 'high' # Breaks the build if a High/Critical vulnerability is found
+          logs: true
